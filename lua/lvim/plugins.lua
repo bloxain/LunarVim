@@ -7,6 +7,48 @@ local core_plugins = {
     dependencies = { "mason-lspconfig.nvim", "nlsp-settings.nvim" },
   },
   {
+  "jackMort/ChatGPT.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("chatgpt").setup()
+    end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
+  },
+  { "gelguy/wilder.nvim", 
+    lazy = false,
+    config = function ()
+      local wilder = require('wilder')
+      wilder.setup({modes = {':', '/', '?'}})
+
+      wilder.set_option('renderer', wilder.popupmenu_renderer(
+        wilder.popupmenu_palette_theme({
+          -- 'single', 'double', 'rounded' or 'solid'
+          -- can also be a list of 8 characters, see :h wilder#popupmenu_palette_theme() for more details
+          border = 'rounded',
+          max_height = '75%',      -- max height of the palette
+          min_height = 0,          -- set to the same as 'max_height' for a fixed height window
+          prompt_position = 'top', -- 'top' or 'bottom' to set the location of the prompt
+          reverse = 0,             -- set to 1 to reverse the order of the list, use in combination with 'prompt_position'
+        })
+      ))
+    end},
+  { "xiyaowong/transparent.nvim",
+    lazy = false,
+      opts = {
+        extra_groups = {
+          "NormalFloat",
+          "NvimTreeNormal",
+          "NvimTreeNormalNC",
+          "NvimTreeNormalFloat",
+          "NvimTreeEndOfBuffer",
+        },
+      }
+    },
+  {
     "williamboman/mason-lspconfig.nvim",
     cmd = { "LspInstall", "LspUninstall" },
     config = function()
