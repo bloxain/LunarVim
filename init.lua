@@ -23,3 +23,5 @@ Log:debug "Starting LunarVim"
 
 local commands = require "lvim.core.commands"
 commands.load(commands.defaults)
+
+vim.api.nvim_set_keymap('n', '<A-4>', ':ChatGPT<CR>', { noremap = true, silent = true })
